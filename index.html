@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>PopBox (simple popup box) demo</title>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="./popbox.css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="./popbox.js" defer></script><!--requires jQuery-->
+
+<!-- see https://github.com/utilmind/on-ready-js -->
+<script>
+// <![CDATA[
+wReady=function(f,w){var r=document.readyState;w||r!="loading"?r!="complete"?window.addEventListener("load",function(){f(3)}):f(3):document.addEventListener("DOMContentLoaded",function(){f(2)&&wReady(f)})}
+doInit=function(f,w){(w>1||(w&&document.readyState=="loading")||f(1))&&wReady(f,w>1)}
+// ]]>
+</script>
+
+</head>
+
+<body>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim ut sem viverra aliquet eget sit amet tellus. Turpis egestas sed tempus urna. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Dignissim enim sit amet venenatis urna cursus eget nunc. Senectus et netus et malesuada fames ac turpis egestas integer. Odio ut sem nulla pharetra diam sit amet. Nunc lobortis mattis aliquam faucibus purus in massa tempor. Lacus vestibulum sed arcu non odio. Tempor orci dapibus ultrices in. Elementum sagittis vitae et leo duis.</p>
+
+<p>
+<img src="https://calculium.com/i/icon/feedback.svg" width="25%" align="right" />
+Massa enim nec dui nunc mattis. Dolor purus non enim praesent elementum facilisis leo vel. Massa sed elementum tempus egestas. Hac habitasse platea dictumst quisque sagittis purus sit. Ut placerat orci nulla pellentesque dignissim enim sit amet. Eget mauris pharetra et ultrices neque. In fermentum posuere urna nec tincidunt praesent semper feugiat nibh. At volutpat diam ut venenatis tellus in metus vulputate eu. Ultrices in iaculis nunc sed. Duis at consectetur lorem donec massa sapien. Arcu risus quis varius quam quisque. In nulla posuere sollicitudin aliquam ultrices sagittis orci. Leo vel fringilla est ullamcorper eget nulla. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Tristique sollicitudin nibh sit amet commodo nulla. Purus in massa tempor nec feugiat nisl pretium fusce id. Sed arcu non odio euismod lacinia at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Et malesuada fames ac turpis egestas sed.</p>
+
+<p>Ullamcorper sit amet risus nullam. Nec feugiat in fermentum posuere urna nec tincidunt. Elit duis tristique sollicitudin nibh. Tellus molestie nunc non blandit. Eget aliquet nibh praesent tristique. Feugiat in fermentum posuere urna. Tellus mauris a diam maecenas sed enim ut sem. Eget arcu dictum varius duis. Enim nulla aliquet porttitor lacus. Mauris pharetra et ultrices neque.</p>
+
+<p>At augue eget arcu dictum. Rhoncus aenean vel elit scelerisque mauris. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum. Eget nunc lobortis mattis aliquam faucibus purus in massa. Ultrices vitae auctor eu augue ut lectus arcu. Suspendisse in est ante in nibh mauris cursus mattis molestie. Orci a scelerisque purus semper. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Arcu risus quis varius quam quisque id diam vel quam. Nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Cursus in hac habitasse platea. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Egestas quis ipsum suspendisse ultrices gravida dictum. Augue mauris augue neque gravida in.</p>
+
+<p>Arcu bibendum at varius vel pharetra vel turpis. Felis eget velit aliquet sagittis. Euismod nisi porta lorem mollis aliquam ut. Ullamcorper sit amet risus nullam eget felis eget nunc lobortis. Habitasse platea dictumst quisque sagittis purus sit amet volutpat consequat. Libero nunc consequat interdum varius sit amet mattis vulputate enim. Vulputate dignissim suspendisse in est ante in nibh mauris cursus. Sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Scelerisque purus semper eget duis at tellus at urna. Cras ornare arcu dui vivamus. Arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc. Mus mauris vitae ultricies leo integer malesuada nunc.</p>
+
+<p>Viverra nam libero justo laoreet sit amet cursus sit. Proin nibh nisl condimentum id venenatis a condimentum vitae. Dolor purus non enim praesent elementum facilisis. Adipiscing elit ut aliquam purus sit amet. Nunc scelerisque viverra mauris in. Porttitor lacus luctus accumsan tortor posuere. Quis hendrerit dolor magna eget est lorem ipsum dolor. Risus at ultrices mi tempus imperdiet nulla malesuada. Leo duis ut diam quam nulla. Ultricies tristique nulla aliquet enim tortor at auctor urna. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. A scelerisque purus semper eget duis. Elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Ac turpis egestas maecenas pharetra convallis posuere morbi leo urna. In iaculis nunc sed augue lacus viverra vitae.</p>
+
+<p>Lorem ipsum dolor sit amet consectetur. Facilisi morbi tempus iaculis urna. In nulla posuere sollicitudin aliquam ultrices sagittis. Feugiat in fermentum posuere urna nec. Leo vel fringilla est ullamcorper eget nulla facilisi etiam. Euismod lacinia at quis risus sed. Amet consectetur adipiscing elit pellentesque habitant morbi. Quisque sagittis purus sit amet volutpat consequat mauris. Eu nisl nunc mi ipsum faucibus vitae aliquet. Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Phasellus faucibus scelerisque eleifend donec pretium. Lectus quam id leo in vitae. Lectus urna duis convallis convallis tellus id interdum. Bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida. Interdum velit euismod in pellentesque. Quisque sagittis purus sit amet volutpat.</p>
+
+<p>
+<img src="https://calculium.com/i/icon/feedback.svg" width="25%" align="left" />
+Vitae turpis massa sed elementum tempus egestas. Netus et malesuada fames ac turpis egestas. Sed pulvinar proin gravida hendrerit lectus a. Lectus urna duis convallis convallis tellus id interdum. Dictum at tempor commodo ullamcorper. Nunc aliquet bibendum enim facilisis gravida. Tortor vitae purus faucibus ornare suspendisse. Placerat in egestas erat imperdiet. Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Odio aenean sed adipiscing diam donec adipiscing tristique risus nec. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus.</p>
+
+<p>Iaculis eu non diam phasellus vestibulum lorem. Vel risus commodo viverra maecenas accumsan lacus vel. Lectus arcu bibendum at varius vel pharetra vel. Nam at lectus urna duis convallis convallis tellus id. Convallis aenean et tortor at. Lacus sed turpis tincidunt id. Morbi tristique senectus et netus et malesuada fames ac. Mattis nunc sed blandit libero. Duis ut diam quam nulla porttitor massa id neque aliquam. Ut consequat semper viverra nam libero justo laoreet. Nisl vel pretium lectus quam id leo in vitae. In fermentum posuere urna nec tincidunt praesent semper feugiat. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Volutpat maecenas volutpat blandit aliquam etiam. Pharetra sit amet aliquam id diam. Leo in vitae turpis massa sed elementum. Sit amet porttitor eget dolor morbi non arcu. Tempus iaculis urna id volutpat.</p>
+
+<p>Morbi tristique senectus et netus et malesuada. Dictum sit amet justo donec enim. Gravida arcu ac tortor dignissim convallis aenean. Ultricies tristique nulla aliquet enim tortor at. Elementum nisi quis eleifend quam. Sed viverra ipsum nunc aliquet bibendum. Vivamus at augue eget arcu dictum varius duis at consectetur. Et tortor at risus viverra adipiscing. Dui sapien eget mi proin sed libero. Turpis tincidunt id aliquet risus feugiat in ante metus dictum. Mauris pharetra et ultrices neque ornare. Morbi blandit cursus risus at ultrices mi tempus. Aliquet enim tortor at auctor. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Erat pellentesque adipiscing commodo elit at.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim ut sem viverra aliquet eget sit amet tellus. Turpis egestas sed tempus urna. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Dignissim enim sit amet venenatis urna cursus eget nunc. Senectus et netus et malesuada fames ac turpis egestas integer. Odio ut sem nulla pharetra diam sit amet. Nunc lobortis mattis aliquam faucibus purus in massa tempor. Lacus vestibulum sed arcu non odio. Tempor orci dapibus ultrices in. Elementum sagittis vitae et leo duis.</p>
+
+<p>Massa enim nec dui nunc mattis. Dolor purus non enim praesent elementum facilisis leo vel. Massa sed elementum tempus egestas. Hac habitasse platea dictumst quisque sagittis purus sit. Ut placerat orci nulla pellentesque dignissim enim sit amet. Eget mauris pharetra et ultrices neque. In fermentum posuere urna nec tincidunt praesent semper feugiat nibh. At volutpat diam ut venenatis tellus in metus vulputate eu. Ultrices in iaculis nunc sed. Duis at consectetur lorem donec massa sapien. Arcu risus quis varius quam quisque. In nulla posuere sollicitudin aliquam ultrices sagittis orci. Leo vel fringilla est ullamcorper eget nulla. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Tristique sollicitudin nibh sit amet commodo nulla. Purus in massa tempor nec feugiat nisl pretium fusce id. Sed arcu non odio euismod lacinia at. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Et malesuada fames ac turpis egestas sed.</p>
+
+<div><img src="https://calculium.com/i/icon/feedback.svg" width="100%" /></div>
+
+<p>Ullamcorper sit amet risus nullam. Nec feugiat in fermentum posuere urna nec tincidunt. Elit duis tristique sollicitudin nibh. Tellus molestie nunc non blandit. Eget aliquet nibh praesent tristique. Feugiat in fermentum posuere urna. Tellus mauris a diam maecenas sed enim ut sem. Eget arcu dictum varius duis. Enim nulla aliquet porttitor lacus. Mauris pharetra et ultrices neque.</p>
+
+<p>At augue eget arcu dictum. Rhoncus aenean vel elit scelerisque mauris. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum. Eget nunc lobortis mattis aliquam faucibus purus in massa. Ultrices vitae auctor eu augue ut lectus arcu. Suspendisse in est ante in nibh mauris cursus mattis molestie. Orci a scelerisque purus semper. Nunc eget lorem dolor sed viverra ipsum nunc aliquet. Arcu risus quis varius quam quisque id diam vel quam. Nulla facilisi nullam vehicula ipsum a arcu cursus vitae. Cursus in hac habitasse platea. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Egestas quis ipsum suspendisse ultrices gravida dictum. Augue mauris augue neque gravida in.</p>
+
+<p>Arcu bibendum at varius vel pharetra vel turpis. Felis eget velit aliquet sagittis. Euismod nisi porta lorem mollis aliquam ut. Ullamcorper sit amet risus nullam eget felis eget nunc lobortis. Habitasse platea dictumst quisque sagittis purus sit amet volutpat consequat. Libero nunc consequat interdum varius sit amet mattis vulputate enim. Vulputate dignissim suspendisse in est ante in nibh mauris cursus. Sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Scelerisque purus semper eget duis at tellus at urna. Cras ornare arcu dui vivamus. Arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc. Mus mauris vitae ultricies leo integer malesuada nunc.</p>
+
+<p>Viverra nam libero justo laoreet sit amet cursus sit. Proin nibh nisl condimentum id venenatis a condimentum vitae. Dolor purus non enim praesent elementum facilisis. Adipiscing elit ut aliquam purus sit amet. Nunc scelerisque viverra mauris in. Porttitor lacus luctus accumsan tortor posuere. Quis hendrerit dolor magna eget est lorem ipsum dolor. Risus at ultrices mi tempus imperdiet nulla malesuada. Leo duis ut diam quam nulla. Ultricies tristique nulla aliquet enim tortor at auctor urna. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. A scelerisque purus semper eget duis. Elementum facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Ac turpis egestas maecenas pharetra convallis posuere morbi leo urna. In iaculis nunc sed augue lacus viverra vitae.</p>
+
+<p>Lorem ipsum dolor sit amet consectetur. Facilisi morbi tempus iaculis urna. In nulla posuere sollicitudin aliquam ultrices sagittis. Feugiat in fermentum posuere urna nec. Leo vel fringilla est ullamcorper eget nulla facilisi etiam. Euismod lacinia at quis risus sed. Amet consectetur adipiscing elit pellentesque habitant morbi. Quisque sagittis purus sit amet volutpat consequat mauris. Eu nisl nunc mi ipsum faucibus vitae aliquet. Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Phasellus faucibus scelerisque eleifend donec pretium. Lectus quam id leo in vitae. Lectus urna duis convallis convallis tellus id interdum. Bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida. Interdum velit euismod in pellentesque. Quisque sagittis purus sit amet volutpat.</p>
+
+<p>Vitae turpis massa sed elementum tempus egestas. Netus et malesuada fames ac turpis egestas. Sed pulvinar proin gravida hendrerit lectus a. Lectus urna duis convallis convallis tellus id interdum. Dictum at tempor commodo ullamcorper. Nunc aliquet bibendum enim facilisis gravida. Tortor vitae purus faucibus ornare suspendisse. Placerat in egestas erat imperdiet. Placerat vestibulum lectus mauris ultrices eros in cursus turpis. Odio aenean sed adipiscing diam donec adipiscing tristique risus nec. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus.</p>
+
+<p>Iaculis eu non diam phasellus vestibulum lorem. Vel risus commodo viverra maecenas accumsan lacus vel. Lectus arcu bibendum at varius vel pharetra vel. Nam at lectus urna duis convallis convallis tellus id. Convallis aenean et tortor at. Lacus sed turpis tincidunt id. Morbi tristique senectus et netus et malesuada fames ac. Mattis nunc sed blandit libero. Duis ut diam quam nulla porttitor massa id neque aliquam. Ut consequat semper viverra nam libero justo laoreet. Nisl vel pretium lectus quam id leo in vitae. In fermentum posuere urna nec tincidunt praesent semper feugiat. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Blandit libero volutpat sed cras ornare arcu dui vivamus arcu. Volutpat maecenas volutpat blandit aliquam etiam. Pharetra sit amet aliquam id diam. Leo in vitae turpis massa sed elementum. Sit amet porttitor eget dolor morbi non arcu. Tempus iaculis urna id volutpat.</p>
+
+<p>Morbi tristique senectus et netus et malesuada. Dictum sit amet justo donec enim. Gravida arcu ac tortor dignissim convallis aenean. Ultricies tristique nulla aliquet enim tortor at. Elementum nisi quis eleifend quam. Sed viverra ipsum nunc aliquet bibendum. Vivamus at augue eget arcu dictum varius duis at consectetur. Et tortor at risus viverra adipiscing. Dui sapien eget mi proin sed libero. Turpis tincidunt id aliquet risus feugiat in ante metus dictum. Mauris pharetra et ultrices neque ornare. Morbi blandit cursus risus at ultrices mi tempus. Aliquet enim tortor at auctor. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Erat pellentesque adipiscing commodo elit at.</p>
+
+
+<div class="popbox">
+  <div class="dimmer"></div>
+
+  <div class="modal">
+    <div class="outgap">
+
+      <div class="workarea">
+        <div class="close_button">&times;</div>
+        <div style="text-align: center;"><img src="./i/tray.svg" style="width: 4em; height: 4em;" /></div>
+
+        <form>
+          <input type="submit" style="position: absolute; left: -9999px" />
+
+            <h1 style="text-align: center;">Join Our Dining Club, It's FREE!</h1>
+
+            <p style="text-align: justify;"><b>Company Name</b> promotes some of the best restaurants throughout <b>County Name</b>.
+            Our Club members receive monthly notifications about Live Entertainment scheduled at
+            local restaurants, Wine & Beer tastings, exciting New Menu Items as well as Special Dining Incentives.
+            And, Members are also notified when Specially Priced Dining Gift Cards become available.</p>
+
+            <p style="text-align: justify;"><b>Privacy Policy:</b><br />
+            At no time will Company Name Inc. or its subsidiaries share your personal
+            information with any organization.</p>
+
+           <div><label class="control-label" for="email">Email Address:</label></div>
+           <input type="email" name="email" id="email" size="53" />
+
+           <div><label class="control-label" for="fName">First Name:</label></div>
+           <input type="text" name="fName" id="fName" size="53" />
+
+           <div><label class="control-label" for="lName">Last Name:</label></div>
+           <input type="text" name="lName" id="lName" size="53" />
+
+           <div><label class="control-label" for="city">City:</label></div>
+           <input type="text" name="city" id="city" size="53" />
+
+           <div><input type="submit" value="Submit" onClick="return false;" /></div>
+
+           <p>After submitting this form, you'll receive a validation email within minutes.
+           Click the Validation Tab within the body of the email you receive and you're done. Check
+           other mail folder if you do not see the email in your inbox.</p>
+
+        </form>
+        <div style="text-align: center;"><a role="button" href="#" onClick="PopBox.hide(); return false;">Close</a></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// <![CDATA[
+doInit(function() {
+  if (typeof $=="undefined") return 1;
+
+  PopBox.init({
+    auto_show: 5000,         // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
+    auto_close: 60000,        // in milliseconds. 60000 = 60 seconds. 0 = disabled.
+    show_on_scroll_start: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
+    show_on_scroll_end: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
+    closeable_on_dimmer: true
+  });
+}, 1);
+// ]]>
+</script>
+
+</body>
+</html>
