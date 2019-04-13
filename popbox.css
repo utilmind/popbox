@@ -38,7 +38,7 @@
   z-index: 999;
 }
 .popbox .outgap {
-  margin: 5% auto;
+  margin: 5% auto 0 auto;
   max-width: 550px;
   min-height: 110px;
   padding: 1em;
