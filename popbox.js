@@ -132,16 +132,15 @@
     },
 
     hide: function() {
-      var me = this;
-      clearInterval(me.auto_close_timer);
+      clearInterval(this.auto_close_timer);
 
-      $("."+me.classes.popbox).hide();
-      me.override_scrollbar(0);
+      $("."+this.classes.popbox).hide();
+      this.override_scrollbar(0);
     },
 
     stop_hide_timer: function() {
-      clearInterval(me.auto_close_timer);
-      $("."+this.classes.close_countdown).hide();
+      clearInterval(this.auto_close_timer);
+      $("."+this.classes.close_countdown_text).hide();
     },
 
     override_scrollbar: function(add) {
