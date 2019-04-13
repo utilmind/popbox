@@ -21,8 +21,6 @@
       close_button: "close_button",
       close_countdown_text: "close_msg",
       close_countdown_digits: "close_countdown",
-
-      block_timer_body_keyword: "", // "-visible", // if <body> className contains the follwing text snippet, the popup will not be auto-opened on timer.
     },
 
     // private
@@ -67,24 +65,22 @@
         // hook scroll
         if (me.show_on_scroll_end > me.show_on_scroll_start) {
           $(window).scroll(function(e) {
-            if (!me.is_block_body_keyword()) {
-              var scrollTop = $(window).scrollTop(),
-                  viewport_height = $(window).height();
+            var scrollTop = $(window).scrollTop(),
+                viewport_height = $(window).height();
 
-              // This is a kludge to make it working in quirks mode. Problem described at https://viralpatel.net/blogs/jquery-window-height-incorrect/
-              // In case if page doesn't have <!DOCTYPE HTML> or similar directive, the document.body.clientHeight is the viewport height, and $(window).height() is the whole page height.
-              // I would prefer to make this script compatible in any mode, so let's just check out both and use lesser value.
-              if (viewport_height > document.body.clientHeight)
-                viewport_height = document.body.clientHeight;
+            // This is a kludge to make it working in quirks mode. Problem described at https://viralpatel.net/blogs/jquery-window-height-incorrect/
+            // In case if page doesn't have <!DOCTYPE HTML> or similar directive, the document.body.clientHeight is the viewport height, and $(window).height() is the whole page height.
+            // I would prefer to make this script compatible in any mode, so let's just check out both and use lesser value.
+            if (viewport_height > document.body.clientHeight)
+              viewport_height = document.body.clientHeight;
 
-              // console.log("top " + scrollTop + ", bottom: " + (scrollTop + document.body.clientHeight) + ', view height: ' + document.body.clientHeight + ' / ' + $(window).height() + ' viewport: ' + viewport_height +
-              //  ", start: " + document.body.scrollHeight / 100 * me.show_on_scroll_start + ", end: " + document.body.scrollHeight / 100 * me.show_on_scroll_end);
+            // console.log("top " + scrollTop + ", bottom: " + (scrollTop + document.body.clientHeight) + ', view height: ' + document.body.clientHeight + ' / ' + $(window).height() + ' viewport: ' + viewport_height +
+            //  ", start: " + document.body.scrollHeight / 100 * me.show_on_scroll_start + ", end: " + document.body.scrollHeight / 100 * me.show_on_scroll_end);
 
-              if (((scrollTop + viewport_height) > (document.body.scrollHeight / 100 * me.show_on_scroll_start)) &&
-                  (scrollTop < (document.body.scrollHeight / 100 * me.show_on_scroll_end))) {
-                // console.log('fire')
-                me.show(me.auto_close);
-              }
+            if (((scrollTop + viewport_height) > (document.body.scrollHeight / 100 * me.show_on_scroll_start)) &&
+                (scrollTop < (document.body.scrollHeight / 100 * me.show_on_scroll_end))) {
+              // console.log('fire')
+              me.show(me.auto_close);
             }
           });
         }
@@ -100,19 +96,13 @@
 
         // start auto-show timer after the page will be fully loaded.
         doInit(function() {
-          if (me.auto_show && !me.is_block_body_keyword()) {
+          if (me.auto_show) {
             setTimeout(function() {
-              if (!me.is_block_body_keyword())
-                me.show(me.auto_close);
+              me.show(me.auto_close);
             }, me.auto_show);
           }
         }, 2); // 2 - after full page load
       });
-    },
-
-    is_block_body_keyword: function() {
-      return (this.classes.block_timer_body_keyword != "") &&
-         (document.body.className.indexOf(this.classes.block_timer_body_keyword) >= 0);
     },
 
     is_visible: function() {
