@@ -168,15 +168,18 @@
     },
 
     hide: function() {
-      clearInterval(this.auto_close_timer);
-
+      this.stop_hide_timer();
       $("."+this.classes.popbox).hide();
       this.override_scrollbar(0);
     },
 
     stop_hide_timer: function() {
-      clearInterval(this.auto_close_timer);
-      $("."+this.classes.close_countdown_text).hide();
+      if (this.auto_close_timer) {
+        clearInterval(this.auto_close_timer);
+        this.auto_close_timer = false;
+
+        $("."+this.classes.close_countdown_text).hide();
+      }
     },
 
     override_scrollbar: function(add) {
@@ -202,10 +205,11 @@
 /* USAGE example:
 
 PopBox.init({
-  auto_show: 15000,         // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
-  auto_close: 60000,        // in milliseconds. 60000 = 60 seconds. 0 = disabled.
-  show_on_scroll_start: 45, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
-  show_on_scroll_end: 55,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
-  closeable_on_dimmer: false
+  auto_show: 15000,           // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
+  auto_close: 60000,          // in milliseconds. 60000 = 60 seconds. 0 = disabled.
+  show_on_scroll_start: 45,   // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
+  show_on_scroll_end: 55,     // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
+  closeable_on_dimmer: false,
+  auto_start_disabled: false  // disable auto_show on start. It can be re-enabled by calling PopBox.enable_auto() method.
 });
 */
