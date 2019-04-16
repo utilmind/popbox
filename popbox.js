@@ -100,21 +100,16 @@
       // hook scroll
       if (me.show_on_scroll_end > me.show_on_scroll_start) {
         $(window).scroll(me.scroll_hook = function(e) {
-          var scrollTop = $(window).scrollTop(),
-              viewport_height = $(window).height();
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop, // $(window).scrollTop(),
+              scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight,
 
-          // This is a kludge to make it working in quirks mode. Problem described at https://viralpatel.net/blogs/jquery-window-height-incorrect/
-          // In case if page doesn't have <!DOCTYPE HTML> or similar directive, the document.body.clientHeight is the viewport height, and $(window).height() is the whole page height.
-          // I would prefer to make this script compatible in any mode, so let's just check out both and use lesser value.
-          if (viewport_height > document.body.clientHeight)
-            viewport_height = document.body.clientHeight;
+              // following, window.innerHeight is better than $(window).height(), because innerHeight works both in normal and quirks mode (when <!DOCTYPE> not specified).
+              // Important! documentElement.clientHeight and body.clientHeight returns opposite values when <!DOCTYPE> specifed and not specified. Less value would be more correct.
+              viewportHeight = window.innerHeight || (document.documentElement && document.documentElement.clientHeight) || document.body.clientHeight; // window.innerHeight is undefined in IE8-.
 
-          // console.log("top " + scrollTop + ", bottom: " + (scrollTop + document.body.clientHeight) + ', view height: ' + document.body.clientHeight + ' / ' + $(window).height() + ' viewport: ' + viewport_height +
-          //  ", start: " + document.body.scrollHeight / 100 * me.show_on_scroll_start + ", end: " + document.body.scrollHeight / 100 * me.show_on_scroll_end);
-
-          if (((scrollTop + viewport_height) > (document.body.scrollHeight / 100 * me.show_on_scroll_start)) &&
-              (scrollTop < (document.body.scrollHeight / 100 * me.show_on_scroll_end))) {
-            // console.log('fire')
+          if (((scrollTop + viewportHeight) > (scrollHeight / 100 * me.show_on_scroll_start)) &&
+              (scrollTop < (scrollHeight / 100 * me.show_on_scroll_end))) {
+            // console.log('popup on scroll')
             me.show(me.auto_close, 1);
           }
         });
