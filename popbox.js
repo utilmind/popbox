@@ -12,6 +12,8 @@
     show_on_scroll_end: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
     closeable_on_dimmer: true,
     auto_start_disabled: false, // disable auto_show on start. It can be re-enabled by calling PopBox.enable_auto() method.
+                                // Alternative values:
+                                //   - "scroll": enables auto_show only after any scroll event. Don't displays popup if there was no scrolling.
 
     classes: {
       popbox: "popbox",
@@ -76,7 +78,7 @@
           me.stop_hide_timer();
         });
 
-        if (!me.auto_start_disabled) {
+        if (!me.auto_start_disabled || (me.auto_start_disabled == "scroll")) {
           doInit(function() {
             me.enable_auto();
           }, 2); // 2 - after full page load
@@ -84,22 +86,28 @@
       });
     },
 
-    enable_auto: function() {
+    setup_auto_timer: function() { // private, for internal use
+      var me = this;
+      me.auto_timer = setTimeout(function() {
+        me.show(me.auto_close, 1);
+      }, me.auto_show);
+    },
+
+    enable_auto: function() { // executes only after the page will be fully loaded.
       var me = this;
       if (!me.auto_disabled) return; // nothing to do
 
       me.auto_disabled = false;
 
-      // start auto-show timer after the page will be fully loaded.
-      if (me.auto_show) {
-        me.auto_timer = setTimeout(function() {
-          me.show(me.auto_close, 1);
-        }, me.auto_show);
-      }
+      if (me.auto_show && (me.auto_start_disabled != "scroll"))
+        me.setup_auto_timer();
 
       // hook scroll
-      if (me.show_on_scroll_end > me.show_on_scroll_start) {
+      if ((me.auto_start_disabled == "scroll") || (me.show_on_scroll_end > me.show_on_scroll_start)) {
         $(window).scroll(me.scroll_hook = function(e) {
+          if (me.auto_show && !me.auto_timer) // we needtimer, but it's not set up yet (because we're waiting for any scroll event)
+            me.setup_auto_timer();
+
           var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop, // $(window).scrollTop(),
               scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight,
 
@@ -205,6 +213,6 @@ PopBox.init({
   show_on_scroll_start: 45,   // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
   show_on_scroll_end: 55,     // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
   closeable_on_dimmer: false,
-  auto_start_disabled: false  // disable auto_show on start. It can be re-enabled by calling PopBox.enable_auto() method.
+  auto_start_disabled: false, // disable auto_show on start. It can be re-enabled by calling PopBox.enable_auto() method. Set to "scroll" to start auto_show after any scroll event. (No scroll = no popup.)
 });
 */

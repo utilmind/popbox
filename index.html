@@ -19,7 +19,7 @@ doInit=function(f,w){(w>1||(w&&document.readyState=="loading")||f(1))&&wReady(f,
 </head>
 
 <body>
-<h3>In this demo popup box appears in 5 seconds. Also you can see the PopBox by scrolling to the center. Area between 48% to 52% of the page should appear in viewport, to appear the PopBox.</h3>
+<h3>In this demo popup box appears in 5 seconds (but only after any scroll event). Also you can see the PopBox by scrolling to the center. Area between 48% to 52% of the page should appear in viewport, to appear the PopBox.</h3>
 <p><a href="#" onClick="PopBox.show(); return false;">Open popup "manually"</a>.... <a href="#" onClick="PopBox.enable_auto(); return false;">Enable auto-popups</a> (works if started disabled)</p>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim ut sem viverra aliquet eget sit amet tellus. Turpis egestas sed tempus urna. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Dignissim enim sit amet venenatis urna cursus eget nunc. Senectus et netus et malesuada fames ac turpis egestas integer. Odio ut sem nulla pharetra diam sit amet. Nunc lobortis mattis aliquam faucibus purus in massa tempor. Lacus vestibulum sed arcu non odio. Tempor orci dapibus ultrices in. Elementum sagittis vitae et leo duis.</p>
@@ -132,7 +132,7 @@ doInit(function() {
     show_on_scroll_start: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
     show_on_scroll_end: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
     closeable_on_dimmer: true,
-    auto_start_disabled: false,
+    auto_start_disabled: "scroll",
   });
 }, 1);
 // ]]>
