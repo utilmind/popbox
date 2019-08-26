@@ -22,6 +22,8 @@ doInit=function(f,w){(w>1||(w&&document.readyState=="loading")||f(1))&&wReady(f,
 <h3>In this demo popup box appears in 5 seconds (but only after any scroll event). Also you can see the PopBox by scrolling to the center. Area between 48% to 52% of the page should appear in viewport, to appear the PopBox.</h3>
 <p><a href="#" onClick="PopBox.show(); return false;">Open popup "manually"</a>.... <a href="#" onClick="PopBox.enable_auto(); return false;">Enable auto-popups</a> (works if started disabled)</p>
 
+<div style="text-align: center;"><a href="#" onClick="PopBox.show(PopBox.auto_close / 2); return false;">Show PopBox immediately on click</a></div>
+
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim ut sem viverra aliquet eget sit amet tellus. Turpis egestas sed tempus urna. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Dignissim enim sit amet venenatis urna cursus eget nunc. Senectus et netus et malesuada fames ac turpis egestas integer. Odio ut sem nulla pharetra diam sit amet. Nunc lobortis mattis aliquam faucibus purus in massa tempor. Lacus vestibulum sed arcu non odio. Tempor orci dapibus ultrices in. Elementum sagittis vitae et leo duis.</p>
 
 <p>
@@ -94,16 +96,16 @@ Vitae turpis massa sed elementum tempus egestas. Netus et malesuada fames ac tur
             information with any organization.</p>
 
            <div><label class="control-label" for="email">Email Address:</label></div>
-           <input type="email" name="email" id="email" size="53" />
+           <input type="email" name="email" id="email" size="53" style="text-transform: lowercase" />
 
            <div><label class="control-label" for="fName">First Name:</label></div>
-           <input type="text" name="fName" id="fName" size="53" />
+           <input type="text" name="fName" id="fName" size="53" style="text-transform: capitalize" />
 
            <div><label class="control-label" for="lName">Last Name:</label></div>
-           <input type="text" name="lName" id="lName" size="53" />
+           <input type="text" name="lName" id="lName" size="53" style="text-transform: capitalize" />
 
            <div><label class="control-label" for="city">City:</label></div>
-           <input type="text" name="city" id="city" size="53" />
+           <input type="text" name="city" id="city" size="53" style="text-transform: capitalize" />
 
            <div><input type="submit" value="Submit" onClick="return false;" /></div>
 
@@ -127,12 +129,18 @@ doInit(function() {
   if (typeof $=="undefined") return 1;
 
   PopBox.init({
-    auto_show: 5000,         // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
+    auto_show: 5000,          // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
     auto_close: 60000,        // in milliseconds. 60000 = 60 seconds. 0 = disabled.
     show_on_scroll_start: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
     show_on_scroll_end: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
     closeable_on_dimmer: true,
     auto_start_disabled: "scroll",
+    on_show: function() {     // callbacks
+       console.log('shown');
+    },
+    on_hide: function() {
+       console.log('hidden');
+    },
   });
 }, 1);
 // ]]>

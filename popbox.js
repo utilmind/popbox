@@ -14,6 +14,9 @@
     auto_start_disabled: false, // disable auto_show on start. It can be re-enabled by calling PopBox.enable_auto() method.
                                 // Alternative values:
                                 //   - "scroll": enables auto_show only after any scroll event. Don't displays popup if there was no scrolling.
+    // Callbacks. AK 26.08.2019: I thought to CustomEvent, but it's doesn't supported by IE. Don said that IE is important for PBC users. So let's use simple callbacks.
+    on_show: false, // after show
+    on_hide: false, // after hide
 
     classes: {
       popbox: "popbox",
@@ -55,12 +58,16 @@
         // close on dimmer
         if (me.closeable_on_dimmer) {
           $("."+me.classes.popbox).click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             me.hide();
           });
         }
 
         // close on X-button
         $("."+me.classes.close_button).click(function(e) {
+          e.preventDefault();
+          e.stopPropagation();
           me.hide();
         });
 
@@ -140,12 +147,15 @@
       return $("."+this.classes.popbox).is(":visible");
     },
 
-    show: function(auto_close_ms, is_auto) {
+    show: function(auto_close_ms, is_auto) { // is_auto = not manual call
       var me = this;
       if (me.is_visible()) return;
 
-      if (is_auto) {
-        if (me.auto_disabled) return;
+      if (auto_close_ms) {
+        if (is_auto && me.auto_disabled) return;
+
+        $("."+this.classes.close_countdown_text).show(); // it's quite possible that popup will be displayed more than once, so if this countdown hidden, let's display it again.
+
         me.disable_auto();
         me.auto_shown = 1; // just a flag that we already displayed it.
 
@@ -168,12 +178,16 @@
 
       me.override_scrollbar(1);
       $("."+me.classes.popbox).show();
+
+      if (this.on_show) this.on_show();
     },
 
     hide: function() {
       this.stop_hide_timer();
       $("."+this.classes.popbox).hide();
       this.override_scrollbar(0);
+
+      if (this.on_hide) this.on_hide();
     },
 
     stop_hide_timer: function() {
