@@ -58,7 +58,6 @@
         // close on dimmer
         if (me.closeable_on_dimmer) {
           $("."+me.classes.popbox).click(function(e) {
-            e.preventDefault();
             e.stopPropagation();
             me.hide();
           });
@@ -66,7 +65,6 @@
 
         // close on X-button
         $("."+me.classes.close_button).click(function(e) {
-          e.preventDefault();
           e.stopPropagation();
           me.hide();
         });
@@ -74,7 +72,6 @@
         // ESC key hook
         $(document).keydown(function(e) {
           if ((e.keyCode == 27) && me.is_visible()) {
-            e.preventDefault();
             e.stopPropagation();
             me.hide();
           }
