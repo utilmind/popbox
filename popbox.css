@@ -53,7 +53,7 @@
   box-shadow: 0px 10px 30px rgba(0,0,0,.3);
 }
 
-.close_button {
+.popbox .close-x {
   background-color: rgba(255,255,255,.8);
   border: 3px solid #999;
   border-radius: 50px;

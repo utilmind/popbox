@@ -22,7 +22,8 @@ doInit=function(f,w){(w>1||(w&&document.readyState=="loading")||f(1))&&wReady(f,
 <h3>In this demo popup box appears in 5 seconds (but only after any scroll event). Also you can see the PopBox by scrolling to the center. Area between 48% to 52% of the page should appear in viewport, to appear the PopBox.</h3>
 <p><a href="#" onClick="PopBox.show(); return false;">Open popup "manually"</a>.... <a href="#" onClick="PopBox.enable_auto(); return false;">Enable auto-popups</a> (works if started disabled)</p>
 
-<div style="text-align: center;"><a href="#" onClick="PopBox.show(PopBox.auto_close / 2); return false;">Show PopBox immediately on click</a></div>
+<p style="text-align: center; font-size: 1.3em;"><a href="#" onClick="PopBox.show(PopBox.autoClose / 2); return false;">Show PopBox immediately on click<br /><small>(auto-close in (PopBox.autoClose / 2) seconds)</small></a></p>
+<p style="text-align: center; font-size: 1.3em;"><a href="#" onClick="PopBox.show(); return false;">Show PopBox immediately on click<br /><small>(no auto-close)</small></a></p>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim ut sem viverra aliquet eget sit amet tellus. Turpis egestas sed tempus urna. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Dignissim enim sit amet venenatis urna cursus eget nunc. Senectus et netus et malesuada fames ac turpis egestas integer. Odio ut sem nulla pharetra diam sit amet. Nunc lobortis mattis aliquam faucibus purus in massa tempor. Lacus vestibulum sed arcu non odio. Tempor orci dapibus ultrices in. Elementum sagittis vitae et leo duis.</p>
 
@@ -78,10 +79,10 @@ Vitae turpis massa sed elementum tempus egestas. Netus et malesuada fames ac tur
     <div class="outgap">
 
       <div class="workarea">
-        <div class="close_button">&times;</div>
+        <div class="popbox-close close-x">&times;</div>
         <div style="text-align: center;"><img src="./i/tray.svg" style="width: 4em; height: 4em;" /></div>
 
-        <form>
+        <form onSubmit="alert('Submitted'); return false;">
           <input type="submit" style="position: absolute; left: -9999px" />
 
             <h1 style="text-align: center;">Join Our Dining Club, It's FREE!</h1>
@@ -107,16 +108,16 @@ Vitae turpis massa sed elementum tempus egestas. Netus et malesuada fames ac tur
            <div><label class="control-label" for="city">City:</label></div>
            <input type="text" name="city" id="city" size="53" style="text-transform: capitalize" />
 
-           <div><input type="submit" value="Submit" onClick="return false;" /></div>
+           <div><input type="submit" value="Submit" /></div>
 
            <p>After submitting this form, you'll receive a validation email within minutes.
            Click the Validation Tab within the body of the email you receive and you're done. Check
            other mail folder if you do not see the email in your inbox.</p>
 
         </form>
-        <div style="text-align: center;"><a role="button" href="#" onClick="PopBox.hide(); return false;">Close</a></div>
+        <div style="text-align: center"><a role="button" href="#" class="popbox-close">Close</a></div>
 
-        <div class="close_msg">Popup will be auto closed in <b class="close_countdown"></b> seconds.</div>
+        <div class="popbox-close-msg">Popup will be auto closed in <b class="popbox-close-countdown"></b> seconds.</div>
 
       </div>
     </div>
@@ -129,16 +130,19 @@ doInit(function() {
   if (typeof $=="undefined") return 1;
 
   PopBox.init({
-    auto_show: 5000,          // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
-    auto_close: 60000,        // in milliseconds. 60000 = 60 seconds. 0 = disabled.
-    show_on_scroll_start: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
-    show_on_scroll_end: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
-    closeable_on_dimmer: true,
-    auto_start_disabled: "scroll",
-    on_show: function() {     // callbacks
+    autoShow: 20000,         // in milliseconds. 15000 milliseconds = 15 seconds. 0 = disabled.
+    autoClose: 3000,        // in milliseconds. 60000 = 60 seconds. 0 = disabled.
+    autoShowDisabled: "scroll",
+    showOnScrollStart: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
+    showOnScrollEnd: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
+
+    closeOnDimmer: 1,
+    noPropagateClicks: 1,
+
+    onShow: function() {     // callbacks
        console.log('shown');
     },
-    on_hide: function() {
+    onHide: function() {
        console.log('hidden');
     },
   });
