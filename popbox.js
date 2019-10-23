@@ -14,6 +14,8 @@
                                 //   - "scroll": enables autoShow only after any scroll event. Don't displays popup if there was no scrolling.
     showOnScrollStart: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
     showOnScrollEnd: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
+    showOnExitIntent: true,
+
     closeOnDimmer: true,
     closeOnEsc: true,
     noPropagateClicks: false, // pass clicks on the workarea to another event handlers.
@@ -107,6 +109,20 @@
           doInit(function() {
             me.startAutoShow(me.autoShowDisabled == "scroll"); // will be enabled either on scroll OR
           }, 2); // 2 - after full page load
+        }
+
+        // AK 22.10.2019: show on exit intent. Looked at https://julian.is/article/exit-intent-popups/
+        if (me.showOnExitIntent) {
+          $(document).on("mouseout", function(evt) {
+            if (evt.toElement === null && evt.relatedTarget === null &&
+               (evt.clientY < 0)) {
+
+              if (me.showCnt == 0)
+                me.show();
+              else
+                me.disableAutoShow();
+            }
+          });
         }
       });
     },
@@ -240,7 +256,9 @@
       if (me.timerShow)
         clearInterval(me.timerShow);
       if (me.scrollHook)
-        $(window).unbind("scroll");
+        $(window).off("scroll");
+      if (me.showOnExitIntent)
+        $(document).off("mouseout");
     },
   };
 
