@@ -12,3 +12,5 @@ UPDATE 26.08.2019: added onShow and onHide callback events.
 
 UPDATE 22.10.2019: rewritten almost from scratch to make the code perfect.
 New feature, showOnExitIntent: PopBox can be automatially displayed when mouse hovers address line. (But only if it did not displayed before.) If this functionality is not enough — you may create your own "mouseout" event handler using the code inside the PopBox as an example.
+
+23.10.2019: added timeout before the showOnExitIntent will start working. Also added overrideable event (or it's just method?) onBeforeExitIntent. By default it prevents the PopBox to be displayed on "exit intent" if one of the dAlertify's dialog displayed.
