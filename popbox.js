@@ -15,6 +15,7 @@
     showOnScrollStart: 48, // starting scroll position in percents, between 0% and 100%. Both 0 = disabled.
     showOnScrollEnd: 52,   // ending scroll position. Eg 40..60 means that popbox will appear when any part of page between 40% and 60% is appeared in the viewport.
     showOnExitIntent: true,
+    exitIntentTimeout: 8000, // minimum timeout in milliseconds before displaying the popup because user is about to leave the page. 0 = no timeout.
 
     closeOnDimmer: true,
     closeOnEsc: true,
@@ -113,16 +114,27 @@
 
         // AK 22.10.2019: show on exit intent. Looked at https://julian.is/article/exit-intent-popups/
         if (me.showOnExitIntent) {
-          $(document).on("mouseout", function(evt) {
-            if (evt.toElement === null && evt.relatedTarget === null &&
-               (evt.clientY < 0)) {
+          var setupMouseOut = function() {
+            $(document).on("mouseout", function(evt) {
+              if (evt.toElement === null && evt.relatedTarget === null &&
+                 (evt.clientY < 0)) {
 
-              if (me.showCnt == 0)
-                me.show();
-              else
-                me.disableAutoShow();
-            }
-          });
+                // don't display
+                if (me.onBeforeExitIntent && !me.onBeforeExitIntent())
+                  return false;
+
+                if (me.showCnt == 0)
+                  me.show();
+                else
+                  me.disableAutoShow();
+              }
+            });
+          }
+
+          if (me.exitIntentTimeout > 0)
+            setTimeout(setupMouseOut, me.exitIntentTimeout);
+          else
+            setupMouseOut();
         }
       });
     },
@@ -260,6 +272,15 @@
       if (me.showOnExitIntent)
         $(document).off("mouseout");
     },
+
+    onBeforeExitIntent: function() { // this even can be overriden to disable displaying of the PopBox in case of some extra-special circumstances.
+                                     // by default I don't want to display it if some alertify dialog displayed.
+      if ((typeof alertify != "undefined") &&
+          (alertify.alert().isOpen() || alertify.confirm().isOpen() || alertify.prompt().isOpen()))
+        return false;
+      else
+        return true; // don't worry, https://javascript-minifier.com will optimize this code. All I need here is readability.
+    }
   };
 
   if (!window.PopBox)
