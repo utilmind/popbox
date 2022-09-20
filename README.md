@@ -1,5 +1,5 @@
 # popbox
-Lightweight popup box. Requires jQuery, but can be easily rewritten without jQuery.
+Lightweight popup box. Requires jQuery, but can be easily rewritten in VanillaJS.
 
 Live demo:
 http://utilmind.com/demos/2019/popbox/
